@@ -61,14 +61,24 @@ class MainWidget(RelativeLayout):
         self.init_horizontal_lines()
         self.init_tiles()
         self.init_ship()
-        self.pre_fill_tiles_coordinates()
-        self.generate_tiles_coordinates()
+        self.reset_game()
 
         if self.is_desktop():
             self.keyboard = Window.request_keyboard(self.keyboard_closed, self)
             self.keyboard.bind(on_key_down=self.on_keyboard_down)
             self.keyboard.bind(on_key_up=self.on_keyboard_up)
         Clock.schedule_interval(self.update, 1.0 / 60.0)
+
+    def reset_game(self):
+        self.current_offset_y = 0
+        self.current_y_loop = 0
+        self.current_speed_x = 0
+        self.current_offset_x = 0
+
+        self.tiles_coordinates = []
+        self.pre_fill_tiles_coordinates()
+        self.generate_tiles_coordinates()
+        self.state_game_over = False
 
     def is_desktop(self):
         if platform in ('linux', 'win', 'macosx'):
@@ -259,8 +269,8 @@ class MainWidget(RelativeLayout):
             self.menu_widget.opacity = 1
             print("GAME OVER")
 
-
     def on_menu_btn_pressed(self):
+        self.reset_game()
         self.state_game_has_started = True
         self.menu_widget.opacity = 0
 
