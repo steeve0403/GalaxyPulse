@@ -45,6 +45,7 @@ class MainWidget(Widget):
     SHIP_HEIGHT = 0.035
     SHIP_BASE_Y = 0.04
     ship = None
+    ship_coordinates = [(0, 0), (0, 0), (0, 0)]
 
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
@@ -80,11 +81,33 @@ class MainWidget(Widget):
 
         #   2
         # 1  3
-        x1, y1 = self.transform(center_x - half_width, base_y)
-        x2, y2 = self.transform(center_x, base_y + ship_height)
-        x3, y3 = self.transform(center_x + half_width, base_y)
+        self.ship_coordinates[0] = (center_x - half_width, base_y)
+        self.ship_coordinates[1] = (center_x, base_y + ship_height)
+        self.ship_coordinates[2] = (center_x + half_width, base_y)
+
+        x1, y1 = self.transform(*self.ship_coordinates[0])
+        x2, y2 = self.transform(*self.ship_coordinates[1])
+        x3, y3 = self.transform(*self.ship_coordinates[2])
 
         self.ship.points = [x1, y1, x2, y2, x3, y3]
+
+    def check_ship_collision(self):
+        for i in range(0, len(self.tiles_coordinates)):
+            tile_x, tile_y = self.tiles_coordinates[i]
+            if tile_y > self.current_y_loop + 1:
+                return False
+            if self.check_ship_collision_with_tile(tile_x, tile_y):
+                return True
+            return False
+
+    def check_ship_collision_with_tile(self, tile_x, tile_y):
+        x_min, y_min = self.get_tile_coordinates(tile_x, tile_y)
+        x_max, y_max = self.get_tile_coordinates(tile_x + 1, tile_y + 1)
+        for i in range(0, 3):
+            p_x, p_y = self.ship_coordinates[i]
+            if x_min <= p_x <= x_max and y_min <= p_y <= y_max:
+                return True
+        return False
 
     def init_tiles(self):
         with self.canvas:
@@ -95,6 +118,7 @@ class MainWidget(Widget):
     def pre_fill_tiles_coordinates(self):
         for i in range(0, 10):
             self.tiles_coordinates.append((0, i))
+
     def generate_tiles_coordinates(self):
         last_y = 0
         last_x = 0
@@ -115,9 +139,9 @@ class MainWidget(Widget):
             # 2 -> left
             start_index = -int(self.V_NB_LINES / 2) + 1
             end_index = start_index + self.V_NB_LINES - 1
-            if last_x <=  start_index:
+            if last_x <= start_index:
                 r = 1
-            if last_x >=  end_index:
+            if last_x >= end_index:
                 r = 2
             self.tiles_coordinates.append((last_x, last_y))
             if r == 1:
@@ -131,7 +155,6 @@ class MainWidget(Widget):
                 last_y += 1
                 self.tiles_coordinates.append((last_x, last_y))
             last_y += 1
-
 
     def init_vertical_lines(self):
         with self.canvas:
@@ -219,6 +242,7 @@ class MainWidget(Widget):
 
         self.current_offset_x += self.current_speed_x * time_factor
 
+        self.check_ship_collision()
 
 class GalaxyApp(App):
     pass
