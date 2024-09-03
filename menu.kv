@@ -1,0 +1,16 @@
+
+<MenuWidget>:
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, .8
+        Rectangle:
+            size: self.size
+
+    Label:
+        text: "Title"
+        pos_hint: { "center_x": .5, "center_y": .6 }
+    Button:
+        text: "OK"
+        pos_hint: { "center_x": .5, "center_y": .4 }
+        size_hint: .2, .1
+        on_press: root.parent.on_menu_btn_pressed()
