@@ -14,7 +14,7 @@ from kivy.uix.widget import Widget
 
 class MainWidget(Widget):
     from transforms import transform, transform_2D, transform_perspective
-    from user_action import keyboard_closed, on_keyboard_up, on_touch_down, on_touch_up
+    from user_action import keyboard_closed, on_keyboard_up, on_keyboard_down, on_touch_down, on_touch_up
     point_perspective_x = NumericProperty(0)
     point_perspective_y = NumericProperty(0)
 
@@ -89,13 +89,6 @@ class MainWidget(Widget):
             x1, y1 = self.transform(x_min, line_y)
             x2, y2 = self.transform(x_max, line_y)
             self.horizontal_lines[i].points = [x1, y1, x2, y2]
-
-    def on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        if keycode[1] == 'left':
-            self.current_speed_x = self.SPEED_X
-        elif keycode[1] == 'right':
-            self.current_speed_x = -self.SPEED_X
-        return True
 
     def update(self, dt):
         time_factor = dt * 60
