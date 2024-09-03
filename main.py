@@ -47,6 +47,7 @@ class MainWidget(Widget):
         self.init_vertical_lines()
         self.init_horizontal_lines()
         self.init_tiles()
+        self.pre_fill_tiles_coordinates()
         self.generate_tiles_coordinates()
 
         if self.is_desktop():
@@ -66,6 +67,9 @@ class MainWidget(Widget):
             for i in range(0, self.NB_TILES):
                 self.tiles.append(Quad())
 
+    def pre_fill_tiles_coordinates(self):
+        for i in range(0, 10):
+            self.tiles_coordinates.append((0, i))
     def generate_tiles_coordinates(self):
         last_y = 0
         last_x = 0
@@ -84,6 +88,12 @@ class MainWidget(Widget):
             # 0 -> all right
             # 1 -> right
             # 2 -> left
+            start_index = -int(self.V_NB_LINES / 2) + 1
+            end_index = start_index + self.V_NB_LINES - 1
+            if last_x <=  start_index:
+                r = 1
+            if last_x >=  end_index:
+                r = 2
             self.tiles_coordinates.append((last_x, last_y))
             if r == 1:
                 last_x += 1
