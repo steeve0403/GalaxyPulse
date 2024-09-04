@@ -1,5 +1,5 @@
 from kivy.config import Config
-from kivy.core.audio import SoundLoader
+from kivy.uix import widget
 from kivy.uix.relativelayout import RelativeLayout
 
 from src.effects.audio_manager import AudioManager
@@ -14,43 +14,34 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.graphics import Color, Line, Quad, Triangle
 from kivy.properties import NumericProperty, Clock, ObjectProperty, StringProperty
-from kivy.uix.widget import Widget
+from src.utils.constants import *
+from src.utils.transforms import transform
 
 Builder.load_file('menu.kv')
 
 
 class MainWidget(RelativeLayout):
-    from transforms import transform, transform_2D, transform_perspective
-    from user_action import keyboard_closed, on_keyboard_up, on_keyboard_down, on_touch_down, on_touch_up
+    from src.utils.transforms import transform
+    from src.utils.user_action import keyboard_closed, on_keyboard_up, on_keyboard_down
     menu_widget = ObjectProperty()
     point_perspective_x = NumericProperty(0)
     point_perspective_y = NumericProperty(0)
 
     # Vertical Lines
-    V_NB_LINES = 8  # Preserves symmetry => Use odd number
-    V_LINES_SPACING = .4  # percentage in screen width
     vertical_lines = []
 
     # Horizontal lines
-    H_NB_LINES = 8
-    H_LINES_SPACING = .15  # percentage in screen width
     horizontal_lines = []
 
-    SPEED = .8
     current_offset_y = 0
     current_y_loop = 0
 
-    SPEED_X = 3.5
     current_speed_x = 0
     current_offset_x = 0
 
-    NB_TILES = 16
     tiles = []
     tiles_coordinates = []
 
-    SHIP_WIDTH = .1
-    SHIP_HEIGHT = 0.035
-    SHIP_BASE_Y = 0.04
     ship = None
     ship_coordinates = [(0, 0), (0, 0), (0, 0)]
 
@@ -106,9 +97,9 @@ class MainWidget(RelativeLayout):
 
     def update_ship(self):
         center_x = self.width / 2
-        base_y = self.SHIP_BASE_Y * self.height
-        half_width = self.SHIP_WIDTH * self.width / 2
-        ship_height = self.SHIP_HEIGHT * self.height
+        base_y = SHIP_BASE_Y * self.height
+        half_width = SHIP_WIDTH * self.width / 2
+        ship_height = SHIP_HEIGHT * self.height
 
         #   2
         # 1  3
@@ -116,9 +107,9 @@ class MainWidget(RelativeLayout):
         self.ship_coordinates[1] = (center_x, base_y + ship_height)
         self.ship_coordinates[2] = (center_x + half_width, base_y)
 
-        x1, y1 = self.transform(*self.ship_coordinates[0])
-        x2, y2 = self.transform(*self.ship_coordinates[1])
-        x3, y3 = self.transform(*self.ship_coordinates[2])
+        x1, y1 = transform(self, *self.ship_coordinates[0])
+        x2, y2 = transform(self, *self.ship_coordinates[1])
+        x3, y3 = transform(self, *self.ship_coordinates[2])
 
         self.ship.points = [x1, y1, x2, y2, x3, y3]
 
@@ -143,7 +134,7 @@ class MainWidget(RelativeLayout):
     def init_tiles(self):
         with self.canvas:
             Color(1, 1, 1)
-            for i in range(0, self.NB_TILES):
+            for i in range(0, NB_TILES):
                 self.tiles.append(Quad())
 
     def pre_fill_tiles_coordinates(self):
@@ -163,13 +154,13 @@ class MainWidget(RelativeLayout):
             last_x = last_coordinates[0]
             last_y = last_coordinates[1] + 1
 
-        for i in range(len(self.tiles_coordinates), self.NB_TILES):
+        for i in range(len(self.tiles_coordinates), NB_TILES):
             r = random.randint(0, 2)
             # 0 -> all right
             # 1 -> right
             # 2 -> left
-            start_index = -int(self.V_NB_LINES / 2) + 1
-            end_index = start_index + self.V_NB_LINES - 1
+            start_index = -int(V_NB_LINES / 2) + 1
+            end_index = start_index + V_NB_LINES - 1
             if last_x <= start_index:
                 r = 1
             if last_x >= end_index:
@@ -190,18 +181,18 @@ class MainWidget(RelativeLayout):
     def init_vertical_lines(self):
         with self.canvas:
             Color(1, 1, 1)
-            for i in range(0, self.V_NB_LINES):
+            for i in range(0, V_NB_LINES):
                 self.vertical_lines.append(Line())
 
     def get_line_x_from_index(self, index):
         central_line_x = self.point_perspective_x
-        spacing = self.V_LINES_SPACING * self.width
+        spacing = V_LINES_SPACING * self.width
         offset = index - 0.5
         line_x = central_line_x + offset * spacing + self.current_offset_x
         return line_x
 
     def get_line_y_from_index(self, index):
-        spacing_y = self.H_LINES_SPACING * self.height
+        spacing_y = H_LINES_SPACING * self.height
         line_y = index * spacing_y - self.current_offset_y
         return line_y
 
@@ -212,7 +203,7 @@ class MainWidget(RelativeLayout):
         return x, y
 
     def update_tiles(self):
-        for i in range(0, self.NB_TILES):
+        for i in range(0, NB_TILES):
             tile = self.tiles[i]
             tile_coordinates = self.tiles_coordinates[i]
 
@@ -222,38 +213,38 @@ class MainWidget(RelativeLayout):
             #   2   3
             #
             #   1   4
-            x1, y1 = self.transform(x_min, y_min)
-            x2, y2 = self.transform(x_min, y_max)
-            x3, y3 = self.transform(x_max, y_max)
-            x4, y4 = self.transform(x_max, y_min)
+            x1, y1 = transform(self, x_min, y_min)
+            x2, y2 = transform(self, x_min, y_max)
+            x3, y3 = transform(self, x_max, y_max)
+            x4, y4 = transform(self, x_max, y_min)
 
             tile.points = [x1, y1, x2, y2, x3, y3, x4, y4]
 
     def update_vertical_lines(self):
-        start_index = -int(self.V_NB_LINES / 2) + 1
-        for i in range(start_index, start_index + self.V_NB_LINES):
+        start_index = -int(V_NB_LINES / 2) + 1
+        for i in range(start_index, start_index + V_NB_LINES):
             line_x = self.get_line_x_from_index(i)
-            x1, y1 = self.transform(line_x, 0)
-            x2, y2 = self.transform(line_x, self.height)
+            x1, y1 = transform(self, line_x, 0)
+            x2, y2 = transform(self, line_x, self.height)
             self.vertical_lines[i].points = [x1, y1, x2, y2]
 
     def init_horizontal_lines(self):
         with self.canvas:
             Color(1, 1, 1)
-            for i in range(0, self.H_NB_LINES):
+            for i in range(0, H_NB_LINES):
                 self.horizontal_lines.append(Line())
 
     def update_horizontal_lines(self):
-        start_index = -int(self.V_NB_LINES / 2) + 1
-        end_index = start_index + self.V_NB_LINES - 1
+        start_index = -int(V_NB_LINES / 2) + 1
+        end_index = start_index + V_NB_LINES - 1
 
         x_min = self.get_line_x_from_index(start_index)
         x_max = self.get_line_x_from_index(end_index)
 
-        for i in range(0, self.H_NB_LINES):
+        for i in range(0, H_NB_LINES):
             line_y = self.get_line_y_from_index(i)
-            x1, y1 = self.transform(x_min, line_y)
-            x2, y2 = self.transform(x_max, line_y)
+            x1, y1 = transform(self, x_min, line_y)
+            x2, y2 = transform(self, x_max, line_y)
             self.horizontal_lines[i].points = [x1, y1, x2, y2]
 
     def update(self, dt):
@@ -266,10 +257,10 @@ class MainWidget(RelativeLayout):
         self.update_ship()
 
         if not self.state_game_over and self.state_game_has_started:
-            speed_y = self.SPEED * self.height / 100
+            speed_y = SPEED * self.height / 100
             self.current_offset_y += speed_y * time_factor
 
-            spacing_y = self.H_LINES_SPACING * self.height
+            spacing_y = H_LINES_SPACING * self.height
             while self.current_offset_y >= spacing_y:
                 self.current_offset_y -= spacing_y
                 self.current_y_loop += 1
