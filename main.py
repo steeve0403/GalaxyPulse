@@ -23,7 +23,10 @@ Builder.load_file('src/kv_files/menu.kv')
 
 class MainWidget(RelativeLayout):
     from src.utils.user_action import keyboard_closed, on_keyboard_up, on_keyboard_down
+    from src.utils.transforms import transform
     menu_widget = ObjectProperty()
+    point_perspective_x = NumericProperty(0)
+    point_perspective_y = NumericProperty(0)
 
     current_offset_y = 0
     current_y_loop = 0

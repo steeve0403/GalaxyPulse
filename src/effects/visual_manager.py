@@ -8,11 +8,12 @@ from src.utils.transforms import transform
 from src.utils.constants import *
 
 
-class VisualManager:
-    def __init__(self, widget):
+class VisualManager():
+    from src.utils.transforms import transform
+    def __init__(self, widget, **kwargs):
+        super(VisualManager).__init__(**kwargs)
         self.widget = widget
-        self.point_perspective_x = NumericProperty(0)
-        self.point_perspective_y = NumericProperty(0)
+
 
         self.vertical_lines = []
 
@@ -126,8 +127,8 @@ class VisualManager:
         start_index = -int(V_NB_LINES / 2) + 1
         for i in range(start_index, start_index + V_NB_LINES):
             line_x = self.get_line_x_from_index(i)
-            x1, y1 = transform(self.widget, line_x, 0)
-            x2, y2 = transform(self.widget, line_x, self.widget.height)
+            x1, y1 = transform(self, line_x, 0)
+            x2, y2 = transform(self, line_x, self.widget.height)
             self.vertical_lines[i].points = [x1, y1, x2, y2]
 
     def update_horizontal_lines(self):
