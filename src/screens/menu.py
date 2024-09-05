@@ -47,4 +47,4 @@ class MenuScreen(Screen):
         game_screen = self.manager.get_screen('game_screen')
         game_screen.game_widget.reset_game()
         GameData.state_game_has_started = True
-        self.menu_screen.opacity = 0
+        self.ids.menu_screen.opacity = 0

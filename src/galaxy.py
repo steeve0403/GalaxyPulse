@@ -256,7 +256,7 @@ class MainWidget(Widget):
             self.state_game_over = True
             self.menu_title = "G A M E  O V E R"
             self.menu_title = "Restart"
-            self.menu_screen.opacity = 1
+            self.ids.menu_screen.opacity = 1
             self.audio_manager.stop_music()
             self.audio_manager.play_music_queue(['gameover_impact'])
             Clock.schedule_once(self.play_voice_game_over, 3)

@@ -1,4 +1,4 @@
-#:include menu
+#:include menu menu
 
 MainWidget:
 
@@ -6,8 +6,8 @@ MainWidget:
     canvas.before:
         Rectangle:
             size: self.size
+            pos: self.pos
             source: 'assets/images/bg1.jpg'
-    menu_screen: menu_screen
     point_perspective_x: self.width / 2
     point_perspective_y: self.height * .75
 

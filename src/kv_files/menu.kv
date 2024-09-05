@@ -1,22 +1,24 @@
 
 <MenuScreen>:
-    canvas.before:
-        Color:
-            rgba: 0, 0, 0, .8
-        Rectangle:
-            size: self.size
+    BoxLayout:
+        id: menu_screen
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, .8
+            Rectangle:
+                size: self.size
 
-    Label:
-        font_size: dp(60)
-        font_name: 'assets/fonts/Sackers-Gothic-Std-Light.ttf'
-        text: root.menu_title
-        pos_hint: { "center_x": .5, "center_y": .6 }
-    Button:
-        font_size: dp(30)
-        font_name: 'assets/fonts/Eurostile.ttf'
-        text: root.menu_button_title
-        pos_hint: { "center_x": .5, "center_y": .3 }
-        size_hint: .2, .15
-        on_press: root.on_menu_btn_pressed()
-        background_normal: ''
-        background_color: 1, .3, .4
+        Label:
+            font_size: dp(60)
+            font_name: 'assets/fonts/Sackers-Gothic-Std-Light.ttf'
+            text: root.menu_title
+            pos_hint: { "center_x": .5, "center_y": .6 }
+        Button:
+            font_size: dp(30)
+            font_name: 'assets/fonts/Eurostile.ttf'
+            text: root.menu_button_title
+            pos_hint: { "center_x": .5, "center_y": .3 }
+            size_hint: .2, .15
+            on_press: root.on_menu_btn_pressed()
+            background_normal: ''
+            background_color: 1, .3, .4
