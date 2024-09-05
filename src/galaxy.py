@@ -1,31 +1,22 @@
-import cProfile
+import random
 
-from kivy.config import Config
-from kivy.uix import widget
-from kivy.uix.relativelayout import RelativeLayout
+from kivy import platform
+from kivy.core.window import Window
+from kivy.graphics import Color, Triangle, Quad, Line
+from kivy.properties import ObjectProperty, NumericProperty, StringProperty, Clock
+from kivy.uix.screenmanager import Screen
+from kivy.uix.widget import Widget
 
 from src.effects.audio_manager import AudioManager
-
-Config.set('graphics', 'width', '900')
-Config.set('graphics', 'height', '550')
-
-import random
-from kivy.core.window import Window
-from kivy import platform
-from kivy.app import App
-from kivy.lang import Builder
-from kivy.graphics import Color, Line, Quad, Triangle
-from kivy.properties import NumericProperty, Clock, ObjectProperty, StringProperty
 from src.utils.constants import *
+from src.utils.game_data import GameData
 from src.utils.transforms import transform
 
-Builder.load_file('src/kv_files/menu.kv')
 
-
-class MainWidget(RelativeLayout):
+class MainWidget(Widget):
     from src.utils.transforms import transform
     from src.utils.user_action import keyboard_closed, on_keyboard_up, on_keyboard_down
-    menu_widget = ObjectProperty()
+    menu_screen = ObjectProperty()
     point_perspective_x = NumericProperty(0)
     point_perspective_y = NumericProperty(0)
 
@@ -47,13 +38,8 @@ class MainWidget(RelativeLayout):
     ship = None
     ship_coordinates = [(0, 0), (0, 0), (0, 0)]
 
-    state_game_over = False
-    state_game_has_started = False
-
-    menu_title = StringProperty("G A L A X Y")
-    menu_button_title = StringProperty("Start")
-
     score_txt = StringProperty()
+
 
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
@@ -252,7 +238,7 @@ class MainWidget(RelativeLayout):
         self.update_tiles()
         self.update_ship()
 
-        if not self.state_game_over and self.state_game_has_started:
+        if not GameData.state_game_over and GameData.state_game_has_started:
             speed_y = SPEED * self.height / 100
             self.current_offset_y += speed_y * time_factor
 
@@ -270,7 +256,7 @@ class MainWidget(RelativeLayout):
             self.state_game_over = True
             self.menu_title = "G A M E  O V E R"
             self.menu_title = "Restart"
-            self.menu_widget.opacity = 1
+            self.menu_screen.opacity = 1
             self.audio_manager.stop_music()
             self.audio_manager.play_music_queue(['gameover_impact'])
             Clock.schedule_once(self.play_voice_game_over, 3)
@@ -280,21 +266,11 @@ class MainWidget(RelativeLayout):
         if self.state_game_over:
             self.audio_manager.play_music_queue(['gameover_voice'])
 
-    def on_menu_btn_pressed(self):
-        if self.state_game_over:
-            self.audio_manager.play_music_queue('restart')
-        else:
-            self.audio_manager.play_music_queue(['begin', 'music1'])
-        self.reset_game()
-        self.state_game_has_started = True
-        self.menu_widget.opacity = 0
 
 
-class GalaxyApp(App):
-    pass
 
-
-GalaxyApp().run()
-
-if __name__ == '__main__':
-    cProfile.run('run_app()', sort='time')
+class GameScreen(Screen):
+    def __init__(self, **kwargs):
+        super(GameScreen, self).__init__(**kwargs)
+        self.game_widget = MainWidget()
+        self.add_widget(self.game_widget)
