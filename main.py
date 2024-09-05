@@ -203,7 +203,6 @@ class MainWidget(RelativeLayout):
         return x, y
 
     def update_tiles(self):
-        height = self.height
         for i in range(NB_TILES):
             tile = self.tiles[i]
             tile_coordinates = self.tiles_coordinates[i]
@@ -273,13 +272,13 @@ class MainWidget(RelativeLayout):
             self.menu_title = "Restart"
             self.menu_widget.opacity = 1
             self.audio_manager.stop_music()
-            self.audio_manager.play_music_queue('game_over_impact')
+            self.audio_manager.play_music_queue(['gameover_impact'])
             Clock.schedule_once(self.play_voice_game_over, 3)
             print("GAME OVER")
 
     def play_voice_game_over(self, dt):
         if self.state_game_over:
-            self.audio_manager.play_music_queue('game_over_voice')
+            self.audio_manager.play_music_queue(['gameover_voice'])
 
     def on_menu_btn_pressed(self):
         if self.state_game_over:
