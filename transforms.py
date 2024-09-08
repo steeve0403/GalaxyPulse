@@ -19,4 +19,7 @@ def transform_perspective(self, x, y):
 
     tr_x = self.point_perspective_x + offset_x
     tr_y = self.point_perspective_y - factor_y * self.point_perspective_y
+
     return int(tr_x), int(tr_y)
+
+
