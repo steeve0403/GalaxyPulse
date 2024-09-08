@@ -10,9 +10,8 @@ class MockTransform:
 
 def test_transform_2D():
     mock = MockTransform()
-    # Test de base pour transform_2D
     result = transform_2D(mock, 100, 200)
-    assert result == (100, 200), "La transformation 2D a échoué"
+    assert result == (100, 200), "2D transformation failed"
 
 
 def test_transform_perspective():
@@ -21,4 +20,4 @@ def test_transform_perspective():
     result = transform_perspective(mock, 100, 200)
 
     expected = (193, 140)
-    assert result == expected, "La transformation en perspective n'est pas correcte"
+    assert result == expected, "The perspective transformation is not correct"
