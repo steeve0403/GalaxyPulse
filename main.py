@@ -2,8 +2,11 @@ from kivy.config import Config
 from kivy.core.audio import SoundLoader
 from kivy.uix.relativelayout import RelativeLayout
 
-Config.set('graphics', 'width', '900')
-Config.set('graphics', 'height', '550')
+"""
+This module contains the core game functionality, including rendering, player movement, and interaction with the game environment.
+"""
+# Config.set('graphics', 'width', '900')
+# Config.set('graphics', 'height', '550')
 
 import random
 from kivy.core.window import Window
@@ -12,20 +15,34 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.graphics import Color, Line, Quad, Triangle
 from kivy.properties import NumericProperty, Clock, ObjectProperty, StringProperty
-from kivy.uix.widget import Widget
 
 Builder.load_file('menu.kv')
 
 
 class MainWidget(RelativeLayout):
+    """
+    MainWidget handles the main gameplay area, player controls, and rendering.
+    Attributes:
+        menu_widget (ObjectProperty): Menu displayed when game is paused or over.
+        point_perspective_x (NumericProperty): X-coordinate for perspective transformation.
+        point_perspective_y (NumericProperty): Y-coordinate for perspective transformation.
+        V_NB_LINES (int): Number of vertical lines.
+        H_NB_LINES (int): Number of horizontal lines.
+        SPEED (float): Speed at which the background scrolls.
+        SHIP_WIDTH (float): Width of the player's ship.
+        state_game_over (bool): Game over state.
+        state_game_has_started (bool): Whether the game has started.
+    """
+
     from transforms import transform, transform_2D, transform_perspective
     from user_action import keyboard_closed, on_keyboard_up, on_keyboard_down, on_touch_down, on_touch_up
+
     menu_widget = ObjectProperty()
     point_perspective_x = NumericProperty(0)
     point_perspective_y = NumericProperty(0)
 
     # Vertical Lines
-    V_NB_LINES = 8  # Preserves symmetry => Use odd number
+    V_NB_LINES = 8  # Symmetry is preserved => Use odd number
     V_LINES_SPACING = .4  # percentage in screen width
     vertical_lines = []
 
@@ -68,8 +85,11 @@ class MainWidget(RelativeLayout):
     sound_restart = None
 
     def __init__(self, **kwargs):
+        """
+        Initialize the MainWidget and set up all initial game parameters.
+        Sets the default layout, initial speed, and tile positions.
+        """
         super(MainWidget, self).__init__(**kwargs)
-        # print("Init W:" + str(self.width) + "H:" + str(self.height))
         self.init_audio()
         self.init_vertical_lines()
         self.init_horizontal_lines()
@@ -86,6 +106,9 @@ class MainWidget(RelativeLayout):
         self.sound_galaxy.play()
 
     def init_audio(self):
+        """
+        Initialize the audio files used in the game, including background music and sound effects.
+        """
         self.sound_begin = SoundLoader.load('audio/begin.wav')
         self.sound_galaxy = SoundLoader.load('audio/galaxy.wav')
         self.sound_game_over_impact = SoundLoader.load('audio/gameover_impact.wav')
@@ -99,7 +122,11 @@ class MainWidget(RelativeLayout):
         self.sound_game_over_voice.volume = .25
         self.sound_restart.volume = .25
         self.sound_game_over_impact.volume = .6
+
     def reset_game(self):
+        """
+        Reset the game state to the starting point. This includes resetting the player's position, score, and game environment.
+        """
         self.current_offset_y = 0
         self.current_y_loop = 0
         self.current_speed_x = 0
@@ -112,16 +139,28 @@ class MainWidget(RelativeLayout):
         self.state_game_over = False
 
     def is_desktop(self):
+        """
+        Check if the current platform is a desktop environment (Linux, Windows, macOS).
+
+        Returns:
+            bool: True if running on a desktop platform, False otherwise.
+        """
         if platform in ('linux', 'win', 'macosx'):
             return True
         return False
 
     def init_ship(self):
+        """
+        Initialize the player's ship with default size and position.
+        """
         with self.canvas:
             Color(0, 0, 0)
             self.ship = Triangle()
 
     def update_ship(self):
+        """
+        Update the position and transformation of the player's ship based on current coordinates.
+        """
         center_x = self.width / 2
         base_y = self.SHIP_BASE_Y * self.height
         half_width = self.SHIP_WIDTH * self.width / 2
@@ -140,6 +179,12 @@ class MainWidget(RelativeLayout):
         self.ship.points = [x1, y1, x2, y2, x3, y3]
 
     def check_ship_collision(self):
+        """
+        Check if the player's ship has collided with any obstacles (tiles).
+
+        Returns:
+            bool: True if a collision occurred, otherwise False.
+        """
         for i in range(0, len(self.tiles_coordinates)):
             tile_x, tile_y = self.tiles_coordinates[i]
             if tile_y > self.current_y_loop + 1:
@@ -149,6 +194,16 @@ class MainWidget(RelativeLayout):
         return False
 
     def check_ship_collision_with_tile(self, tile_x, tile_y):
+        """
+        Check if the ship is colliding with a specific tile.
+
+        Args:
+            tile_x (int): The x-coordinate of the tile.
+            tile_y (int): The y-coordinate of the tile.
+
+        Returns:
+            bool: True if the ship is colliding with the tile, False otherwise.
+        """
         x_min, y_min = self.get_tile_coordinates(tile_x, tile_y)
         x_max, y_max = self.get_tile_coordinates(tile_x + 1, tile_y + 1)
         for i in range(0, 3):
@@ -158,16 +213,26 @@ class MainWidget(RelativeLayout):
         return False
 
     def init_tiles(self):
+        """
+        Initialize the game's tiles, setting their initial positions on the screen.
+        Tiles are the obstacles that the player must navigate through.
+        """
         with self.canvas:
             Color(1, 1, 1)
             for i in range(0, self.NB_TILES):
                 self.tiles.append(Quad())
 
     def pre_fill_tiles_coordinates(self):
+        """
+        Fill the initial set of tiles coordinates.
+        """
         for i in range(0, 10):
             self.tiles_coordinates.append((0, i))
 
     def generate_tiles_coordinates(self):
+        """
+        Generate new tile coordinates dynamically as the player progresses.
+        """
         last_y = 0
         last_x = 0
 
@@ -205,12 +270,25 @@ class MainWidget(RelativeLayout):
             last_y += 1
 
     def init_vertical_lines(self):
+        """
+        Initialize the vertical lines for the background grid, determining spacing and initial positions.
+        These lines create the 3D perspective effect.
+        """
         with self.canvas:
             Color(1, 1, 1)
             for i in range(0, self.V_NB_LINES):
                 self.vertical_lines.append(Line())
 
     def get_line_x_from_index(self, index):
+        """
+        Calculate the x-coordinate of a vertical line based on its index.
+
+        Args:
+            index (int): The index of the vertical line.
+
+        Returns:
+            float: The x-coordinate of the vertical line.
+        """
         central_line_x = self.point_perspective_x
         spacing = self.V_LINES_SPACING * self.width
         offset = index - 0.5
@@ -218,17 +296,39 @@ class MainWidget(RelativeLayout):
         return line_x
 
     def get_line_y_from_index(self, index):
+        """
+        Calculate the y-coordinate of a horizontal line based on its index.
+
+        Args:
+            index (int): The index of the horizontal line.
+
+        Returns:
+            float: The y-coordinate of the horizontal line.
+        """
         spacing_y = self.H_LINES_SPACING * self.height
         line_y = index * spacing_y - self.current_offset_y
         return line_y
 
     def get_tile_coordinates(self, tile_x, tile_y):
+        """
+        Get the x and y coordinates of a tile based on its tile indices.
+
+        Args:
+            tile_x (int): The x index of the tile.
+            tile_y (int): The y index of the tile.
+
+        Returns:
+            tuple: The (x, y) coordinates of the tile.
+        """
         tile_y = tile_y - self.current_y_loop
         x = self.get_line_x_from_index(tile_x)
         y = self.get_line_y_from_index(tile_y)
         return x, y
 
     def update_tiles(self):
+        """
+        Update the position of the tiles based on the player's current position in the game world.
+        """
         for i in range(0, self.NB_TILES):
             tile = self.tiles[i]
             tile_coordinates = self.tiles_coordinates[i]
@@ -247,6 +347,9 @@ class MainWidget(RelativeLayout):
             tile.points = [x1, y1, x2, y2, x3, y3, x4, y4]
 
     def update_vertical_lines(self):
+        """
+        Update the position of the vertical lines to reflect the current player perspective.
+        """
         start_index = -int(self.V_NB_LINES / 2) + 1
         for i in range(start_index, start_index + self.V_NB_LINES):
             line_x = self.get_line_x_from_index(i)
@@ -255,12 +358,19 @@ class MainWidget(RelativeLayout):
             self.vertical_lines[i].points = [x1, y1, x2, y2]
 
     def init_horizontal_lines(self):
+        """
+        Initialize the horizontal lines for the background grid, determining spacing and initial positions.
+        The lines move with the vertical scroll.
+        """
         with self.canvas:
             Color(1, 1, 1)
             for i in range(0, self.H_NB_LINES):
                 self.horizontal_lines.append(Line())
 
     def update_horizontal_lines(self):
+        """
+        Update the position of the horizontal lines to reflect the current player perspective.
+        """
         start_index = -int(self.V_NB_LINES / 2) + 1
         end_index = start_index + self.V_NB_LINES - 1
 
@@ -274,6 +384,13 @@ class MainWidget(RelativeLayout):
             self.horizontal_lines[i].points = [x1, y1, x2, y2]
 
     def update(self, dt):
+        """
+        Update the game state at each frame. This function is scheduled to run at intervals and updates the
+        position of the background, tiles, and player's ship.
+
+        Args:
+            dt (float): Time delta between each update call.
+        """
         # print("dt : " + str(dt))
         time_factor = dt * 60
 
@@ -307,11 +424,16 @@ class MainWidget(RelativeLayout):
             print("GAME OVER")
 
     def play_voice_game_over(self, dt):
+        """
+        Play the game over voice sound effect after a delay when the player loses.
+        """
         if self.state_game_over:
             self.sound_game_over_voice.play()
 
-
     def on_menu_btn_pressed(self):
+        """
+        Handle the event when the menu button is pressed. This either starts or restarts the game.
+        """
         if self.state_game_over:
             self.sound_restart.play()
         else:
@@ -322,9 +444,10 @@ class MainWidget(RelativeLayout):
         self.menu_widget.opacity = 0
 
 
-
-
 class GalaxyApp(App):
+    """
+    The main application class that runs the game.
+    """
     pass
 
 

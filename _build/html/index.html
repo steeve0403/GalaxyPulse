@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GalaxyPulse documentation &#8212; GalaxyPulse 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="galaxypulse-documentation">
+<h1>GalaxyPulse documentation<a class="headerlink" href="#galaxypulse-documentation" title="Link to this heading">¶</a></h1>
+<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
+documentation for details.</p>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="py class" id="module-main">
+<dt class="sig sig-object py" id="main.GalaxyApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">GalaxyApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#GalaxyApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.GalaxyApp" title="Link to this definition">¶</a></dt>
+<dd><p>The main application class that runs the game.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="main.MainWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">MainWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget" title="Link to this definition">¶</a></dt>
+<dd><p>MainWidget handles the main gameplay area, player controls, and rendering.
+.. attribute:: menu_widget</p>
+<blockquote>
+<div><p>Menu displayed when game is paused or over.</p>
+<dl class="field-list simple">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ObjectProperty</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.point_perspective_x">
+<span class="sig-name descname"><span class="pre">point_perspective_x</span></span><a class="headerlink" href="#main.MainWidget.point_perspective_x" title="Link to this definition">¶</a></dt>
+<dd><p>X-coordinate for perspective transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumericProperty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.point_perspective_y">
+<span class="sig-name descname"><span class="pre">point_perspective_y</span></span><a class="headerlink" href="#main.MainWidget.point_perspective_y" title="Link to this definition">¶</a></dt>
+<dd><p>Y-coordinate for perspective transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NumericProperty</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.V_NB_LINES">
+<span class="sig-name descname"><span class="pre">V_NB_LINES</span></span><a class="headerlink" href="#main.MainWidget.V_NB_LINES" title="Link to this definition">¶</a></dt>
+<dd><p>Number of vertical lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.H_NB_LINES">
+<span class="sig-name descname"><span class="pre">H_NB_LINES</span></span><a class="headerlink" href="#main.MainWidget.H_NB_LINES" title="Link to this definition">¶</a></dt>
+<dd><p>Number of horizontal lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.SPEED">
+<span class="sig-name descname"><span class="pre">SPEED</span></span><a class="headerlink" href="#main.MainWidget.SPEED" title="Link to this definition">¶</a></dt>
+<dd><p>Speed at which the background scrolls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.SHIP_WIDTH">
+<span class="sig-name descname"><span class="pre">SHIP_WIDTH</span></span><a class="headerlink" href="#main.MainWidget.SHIP_WIDTH" title="Link to this definition">¶</a></dt>
+<dd><p>Width of the player’s ship.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.state_game_over">
+<span class="sig-name descname"><span class="pre">state_game_over</span></span><a class="headerlink" href="#main.MainWidget.state_game_over" title="Link to this definition">¶</a></dt>
+<dd><p>Game over state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="main.MainWidget.state_game_has_started">
+<span class="sig-name descname"><span class="pre">state_game_has_started</span></span><a class="headerlink" href="#main.MainWidget.state_game_has_started" title="Link to this definition">¶</a></dt>
+<dd><p>Whether the game has started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.check_ship_collision">
+<span class="sig-name descname"><span class="pre">check_ship_collision</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.check_ship_collision"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.check_ship_collision" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the player’s ship has collided with any obstacles (tiles).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if a collision occurred, otherwise False.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.check_ship_collision_with_tile">
+<span class="sig-name descname"><span class="pre">check_ship_collision_with_tile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tile_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.check_ship_collision_with_tile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.check_ship_collision_with_tile" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the ship is colliding with a specific tile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile_x</strong> (<em>int</em>) – The x-coordinate of the tile.</p></li>
+<li><p><strong>tile_y</strong> (<em>int</em>) – The y-coordinate of the tile.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the ship is colliding with the tile, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.generate_tiles_coordinates">
+<span class="sig-name descname"><span class="pre">generate_tiles_coordinates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.generate_tiles_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.generate_tiles_coordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Generate new tile coordinates dynamically as the player progresses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.get_line_x_from_index">
+<span class="sig-name descname"><span class="pre">get_line_x_from_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.get_line_x_from_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.get_line_x_from_index" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the x-coordinate of a vertical line based on its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – The index of the vertical line.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The x-coordinate of the vertical line.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.get_line_y_from_index">
+<span class="sig-name descname"><span class="pre">get_line_y_from_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.get_line_y_from_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.get_line_y_from_index" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the y-coordinate of a horizontal line based on its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – The index of the horizontal line.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The y-coordinate of the horizontal line.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.get_tile_coordinates">
+<span class="sig-name descname"><span class="pre">get_tile_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tile_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tile_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.get_tile_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.get_tile_coordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Get the x and y coordinates of a tile based on its tile indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tile_x</strong> (<em>int</em>) – The x index of the tile.</p></li>
+<li><p><strong>tile_y</strong> (<em>int</em>) – The y index of the tile.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The (x, y) coordinates of the tile.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.init_audio">
+<span class="sig-name descname"><span class="pre">init_audio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.init_audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.init_audio" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the audio files used in the game, including background music and sound effects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.init_horizontal_lines">
+<span class="sig-name descname"><span class="pre">init_horizontal_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.init_horizontal_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.init_horizontal_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the horizontal lines for the background grid, determining spacing and initial positions.
+The lines move with the vertical scroll.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.init_ship">
+<span class="sig-name descname"><span class="pre">init_ship</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.init_ship"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.init_ship" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the player’s ship with default size and position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.init_tiles">
+<span class="sig-name descname"><span class="pre">init_tiles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.init_tiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.init_tiles" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the game’s tiles, setting their initial positions on the screen.
+Tiles are the obstacles that the player must navigate through.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.init_vertical_lines">
+<span class="sig-name descname"><span class="pre">init_vertical_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.init_vertical_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.init_vertical_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the vertical lines for the background grid, determining spacing and initial positions.
+These lines create the 3D perspective effect.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.is_desktop">
+<span class="sig-name descname"><span class="pre">is_desktop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.is_desktop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.is_desktop" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the current platform is a desktop environment (Linux, Windows, macOS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if running on a desktop platform, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.keyboard_closed">
+<span class="sig-name descname"><span class="pre">keyboard_closed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.keyboard_closed" title="Link to this definition">¶</a></dt>
+<dd><p>Handle event when the keyboard is closed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.on_keyboard_down">
+<span class="sig-name descname"><span class="pre">on_keyboard_down</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keyboard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keycode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.on_keyboard_down" title="Link to this definition">¶</a></dt>
+<dd><p>Handle event when a key is pressed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.on_keyboard_up">
+<span class="sig-name descname"><span class="pre">on_keyboard_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keyboard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keycode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.on_keyboard_up" title="Link to this definition">¶</a></dt>
+<dd><p>Handle event when a key is released.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.on_menu_btn_pressed">
+<span class="sig-name descname"><span class="pre">on_menu_btn_pressed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.on_menu_btn_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.on_menu_btn_pressed" title="Link to this definition">¶</a></dt>
+<dd><p>Handle the event when the menu button is pressed. This either starts or restarts the game.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.on_touch_down">
+<span class="sig-name descname"><span class="pre">on_touch_down</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">touch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.on_touch_down" title="Link to this definition">¶</a></dt>
+<dd><p>Handle event when a screen touch is detected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>touch</strong> (<em>Touch</em>) – The touch event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.on_touch_up">
+<span class="sig-name descname"><span class="pre">on_touch_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">touch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.on_touch_up" title="Link to this definition">¶</a></dt>
+<dd><p>Handle event when a screen touch ends.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>touch</strong> (<em>Touch</em>) – The touch event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.play_voice_game_over">
+<span class="sig-name descname"><span class="pre">play_voice_game_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.play_voice_game_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.play_voice_game_over" title="Link to this definition">¶</a></dt>
+<dd><p>Play the game over voice sound effect after a delay when the player loses.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.pre_fill_tiles_coordinates">
+<span class="sig-name descname"><span class="pre">pre_fill_tiles_coordinates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.pre_fill_tiles_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.pre_fill_tiles_coordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Fill the initial set of tiles coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.reset_game">
+<span class="sig-name descname"><span class="pre">reset_game</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.reset_game"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.reset_game" title="Link to this definition">¶</a></dt>
+<dd><p>Reset the game state to the starting point. This includes resetting the player’s position, score, and game environment.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.transform" title="Link to this definition">¶</a></dt>
+<dd><p>Apply 3D transformation to coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – X-coordinate.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y-coordinate.</p></li>
+<li><p><strong>z</strong> (<em>float</em>) – Z-coordinate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformed (x, y, z) coordinates.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.transform_2D">
+<span class="sig-name descname"><span class="pre">transform_2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.transform_2D" title="Link to this definition">¶</a></dt>
+<dd><p>Apply 2D transformation to coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – X-coordinate.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y-coordinate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformed (x, y) coordinates.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.transform_perspective">
+<span class="sig-name descname"><span class="pre">transform_perspective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.MainWidget.transform_perspective" title="Link to this definition">¶</a></dt>
+<dd><p>Apply perspective transformation to coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – X-coordinate.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Y-coordinate.</p></li>
+<li><p><strong>perspective</strong> (<em>float</em>) – Perspective value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transformed coordinates with perspective applied.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update the game state at each frame. This function is scheduled to run at intervals and updates the
+position of the background, tiles, and player’s ship.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<em>float</em>) – Time delta between each update call.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.update_horizontal_lines">
+<span class="sig-name descname"><span class="pre">update_horizontal_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.update_horizontal_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.update_horizontal_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Update the position of the horizontal lines to reflect the current player perspective.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.update_ship">
+<span class="sig-name descname"><span class="pre">update_ship</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.update_ship"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.update_ship" title="Link to this definition">¶</a></dt>
+<dd><p>Update the position and transformation of the player’s ship based on current coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.update_tiles">
+<span class="sig-name descname"><span class="pre">update_tiles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.update_tiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.update_tiles" title="Link to this definition">¶</a></dt>
+<dd><p>Update the position of the tiles based on the player’s current position in the game world.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main.MainWidget.update_vertical_lines">
+<span class="sig-name descname"><span class="pre">update_vertical_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#MainWidget.update_vertical_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.MainWidget.update_vertical_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Update the position of the vertical lines to reflect the current player perspective.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">GalaxyPulse</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Z-Dezign.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
