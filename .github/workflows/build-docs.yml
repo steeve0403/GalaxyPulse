@@ -35,6 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: sphinx-docs
-          path: docs/_build/html
+          path: ../docs/_build/html
+
       - name: List generated files
         run: ls -R docs/_build/html
