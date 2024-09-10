@@ -31,7 +31,6 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
 urllib3==2.2.2
-zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
 
 # formatting ReStructuredText
 docutils==0.21.2
