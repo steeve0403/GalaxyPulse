@@ -1,11 +1,12 @@
 from kivy.core.audio import SoundLoader
+from kivy.graphics.cgl import Config
 from kivy.uix.relativelayout import RelativeLayout
 
 """
 This module contains the core game functionality, including rendering, player movement, and interaction with the game environment.
 """
-# Config.set('graphics', 'width', '900')
-# Config.set('graphics', 'height', '550')
+Config.set('graphics', 'width', '900')
+Config.set('graphics', 'height', '550')
 
 import random
 from kivy.core.window import Window
@@ -136,6 +137,7 @@ class MainWidget(RelativeLayout):
         self.pre_fill_tiles_coordinates()
         self.generate_tiles_coordinates()
         self.state_game_over = False
+        self.sound_music1.play()
 
     def is_desktop(self):
         """
