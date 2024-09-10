@@ -16,7 +16,7 @@ _Check out the game in action:_
 
 ![Galaxy Quest Gameplay](screenshots/gameplay.gif)
 
-## ✨ Features (Version 1.0)
+## ✨ Features (Version 1.0.0)
 - 2D terrain generation with perspective effects.
 - Smooth player movement and obstacle detection.
 - Multi-platform support (Windows, macOS, Linux, Android).

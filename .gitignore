@@ -133,3 +133,15 @@ out/
 
 # Environments
 .vscode/
+
+# Ignore Sphinx build directory
+_build/
+.doctrees/
+doctrees/
+
+# Ignore LaTeX output
+*.aux
+*.out
+*.toc
+*.lot
+*.lof
