@@ -18,6 +18,15 @@ release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 autosummary_generate = True
+autodoc_default_options = {
+    'members': True,
+    'special-members': True,
+    'undoc-members': True,
+    'show-inheritance': True
+}
+
+autodoc_inherit_docstrings = True
+
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
@@ -26,6 +35,7 @@ extensions = [
 ]
 
 templates_path = ['_templates']
+
 exclude_patterns = [
     '_build',
     'Thumbs.db',

@@ -15,3 +15,4 @@ Galaxy Pulse is an arcade game where players control a spaceship, dodging obstac
    game_description
    contribution
    version_2_0_0
+   modules
