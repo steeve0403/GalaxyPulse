@@ -54,12 +54,12 @@ html_favicon = '../_static/favicon_io/favicon.ico'
 
 html_theme_options = {
     "light_css_variables": {
-        "color-brand-primary": "#2980b9",  # Bleu pour les titres et boutons
-        "color-brand-content": "#3498db",  # Bleu clair pour le contenu
-        "color-sidebar-background": "#f5f5f5",  # Couleur de fond de la barre latérale
+        "color-brand-primary": "#2980b9",
+        "color-brand-content": "#3498db",
+        "color-sidebar-background": "#f5f5f5",
     },
     "dark_css_variables": {
-        "color-brand-primary": "#1abc9c",  # Vert pour le mode sombre
+        "color-brand-primary": "#1abc9c",
         "color-brand-content": "#2ecc71",
         "color-sidebar-background": "#333333",
     }

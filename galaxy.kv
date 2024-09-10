@@ -7,6 +7,11 @@ MainWidget:
         Rectangle:
             size: self.size
             source: 'images/bg3.webp'
+        Color:
+            rgba: 0, 0, 0, 0.4  # 0.4 est la transparence (40%)
+        Rectangle:
+            size: self.size
+            pos: self.pos
     menu_widget: menu_widget
     point_perspective_x: self.width / 2
     point_perspective_y: self.height * .75
