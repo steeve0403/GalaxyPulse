@@ -38,4 +38,4 @@ jobs:
           path: /docs/_build/html
 
       - name: List generated files
-        run: ls -R docs/_build/html
+        run: ls -R /docs/_build/html
