@@ -29,8 +29,7 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd docs 
-          make html
+          make html_docs
 
       - name: Upload documentation
         uses: actions/upload-artifact@v2
