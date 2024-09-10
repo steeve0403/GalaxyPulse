@@ -14,7 +14,8 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Distribution / packaging
-build/
+_build/*
+!_build/html
 develop-eggs/
 dist/
 downloads/
