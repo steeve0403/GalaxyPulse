@@ -36,6 +36,10 @@ jobs:
         with:
           name: sphinx-docs
           path: _build/html
+      #      - name: List generated files
+      #        run: ls -R _build/html
 
-      - name: List generated files
-        run: ls -R _build/html
+      - name: Run flake8 linter
+        run: |
+          pip install flake8
+          flake8 .
