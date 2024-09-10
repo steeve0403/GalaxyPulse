@@ -37,7 +37,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          rm -rf docs_deploy/
+          rm -rf docs_deploy/*
           cp -r _build/html/* docs_deploy/
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
