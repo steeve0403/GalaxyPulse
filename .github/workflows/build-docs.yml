@@ -37,8 +37,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          rm -rf docs_deploy/
-          
+          echo "" > docs/.nojekyll
           cp -r _build/html/* docs/
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
