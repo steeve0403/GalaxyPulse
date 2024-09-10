@@ -1,4 +1,4 @@
-name: Build Documentation
+name: Build and Deploy Documentation
 
 on:
   push:
@@ -9,15 +9,15 @@ on:
       - main
 
 jobs:
-  build-docs:
+  build-deploy-docs:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.x'
 
@@ -29,11 +29,23 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd docs 
-          make html
+          make html_docs
 
-      - name: Upload documentation
-        uses: actions/upload-artifact@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: sphinx-docs
-          path: docs/_build/html
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/html
+
+#     - name: Upload documentation
+#       uses: actions/upload-artifact@v3
+#       with:
+#         name: sphinx-docs
+#         path: _build/html
+#     - name: List generated files
+#       run: ls -R _build/html
+
+#     - name: Run flake8 linter
+#       run: |
+#         pip install flake8
+#         flake8 .
