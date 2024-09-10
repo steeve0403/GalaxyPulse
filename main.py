@@ -1,4 +1,3 @@
-from kivy.config import Config
 from kivy.core.audio import SoundLoader
 from kivy.uix.relativelayout import RelativeLayout
 
