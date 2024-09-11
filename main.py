@@ -155,7 +155,7 @@ class MainWidget(RelativeLayout):
         Initialize the player's ship with default size and position.
         """
         with self.canvas:
-            Color(13, 13, 13, 1)
+            Color(240, 240, 240, 1)
             self.ship = Triangle()
 
     def update_ship(self):
@@ -219,7 +219,7 @@ class MainWidget(RelativeLayout):
         Tiles are the obstacles that the player must navigate through.
         """
         with self.canvas:
-            Color(240, 240, 240, 1)
+            # Color(13, 13, 13, 1)
             for i in range(0, self.NB_TILES):
                 self.tiles.append(Quad())
 
@@ -276,7 +276,7 @@ class MainWidget(RelativeLayout):
         These lines create the 3D perspective effect.
         """
         with self.canvas:
-            Color(160, 32, 240, 1)
+            Color(160, 32, 240, .4)
             for i in range(0, self.V_NB_LINES):
                 self.vertical_lines.append(Line())
 
@@ -364,7 +364,7 @@ class MainWidget(RelativeLayout):
         The lines move with the vertical scroll.
         """
         with self.canvas:
-            Color(160, 32, 240, 1)
+            Color(160, 32, 240, .4)
             for i in range(0, self.H_NB_LINES):
                 self.horizontal_lines.append(Line())
 
